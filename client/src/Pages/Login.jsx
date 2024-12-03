@@ -14,22 +14,21 @@ const Login = () => {
     const username=form.username.value;
     const password=form.pswrd.value
     const data={username,password};
-    if(username==='user' && password==='123'){
-      navigate('/profile');
-    }
-
-    else{
-       alert("Invalid username or password");
-    }
     console.log(data)
-    axios
-      .post('http://localhost:8080/login', data)
+      const response=axios.post('http://localhost:8080/login', data)
       .then((response) => {
         console.log('Data inserted successfully:', response.data);
       })
       .catch((error) => {
         console.error('There was an error inserting the data:', error);
       });
+      if(response.status===200){
+        navigate('/profile');
+      }
+  
+      else{
+         alert("Invalid username or password");
+      }
 
   }
   return (
