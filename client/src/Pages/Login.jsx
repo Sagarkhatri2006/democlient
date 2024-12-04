@@ -7,7 +7,7 @@ import axios from 'axios';
 const Login = () => {
   const navigate=useNavigate();
 
-  function handledata(e)
+  async function handledata(e)
   {
     e.preventDefault();
     const form=e.target;
@@ -15,7 +15,7 @@ const Login = () => {
     const password=form.pswrd.value
     const data={username,password};
     console.log(data)
-      const response=axios.post('http://localhost:8080/login', data)
+      const response=await axios.post('http://localhost:8080/login', data)
       .then((response) => {
         console.log('Data inserted successfully:', response.data);
       })
